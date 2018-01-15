@@ -30,8 +30,12 @@ public class TextService {
                 throw new IllegalArgumentException("Seu texto contém palavras maiores do que o tamanho máximo da linha.");
             }
             if (representsDoubleLinefeedCharacter(word)) {
-                word = "\n\n";
-                line = justify(line, lineLength);
+                if (line.getLength() > 0) {
+                    word = "\n\n";
+                    line = justify(line, lineLength);
+                } else {
+                    word = "\n";
+                }
                 output.append(line.getLineAsString().trim()).append(word);
                 line = new Line();
             } else if (line.getLength() + word.length() <= lineLength) {
@@ -49,7 +53,7 @@ public class TextService {
         }
         line = justify(line, lineLength);
         output.append(line.getLineAsString().trim());
-
+        System.out.println(output.toString().trim());
         return output.toString().trim();
     }
 
