@@ -2,9 +2,11 @@ package com.nicolas.redditscraper.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class Thread {
     private String title;
     private Integer upvotes;

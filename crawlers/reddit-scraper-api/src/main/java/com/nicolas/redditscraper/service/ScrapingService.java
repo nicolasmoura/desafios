@@ -24,30 +24,27 @@ public class ScrapingService {
             for (Element hotThreadElement : hotThreadElements) {
                 hotThreads.add(new Thread(
                         getThreadTitleFromElement(hotThreadElement),
-                        getNumberOfUpvotesFromThread(hotThreadElement),
+                        getNumberOfUpvotesFromElement(hotThreadElement),
                         getPermalinkFromElement(hotThreadElement),
                         getThreadLinkFromElement(hotThreadElement),
                         subreddit
                 ));
             }
+            hotThreadElements.clear();
         }
 
         return hotThreads;
     }
 
-    public void printHotThreadsInformation(String subreddit) throws IOException {
-        List<Element> hotThreadElements = getHotThreadElements(getThreadElements(subreddit));
-        for (Element hotThreadElement : hotThreadElements) {
-            printThreadInformation(hotThreadElement, getNumberOfUpvotesFromThread(hotThreadElement));
-        }
-        System.out.println("\n");
+    private String getThreadTitleFromElement(Element threadElement) {
+        return getTitleAndLinkElement(threadElement).text();
     }
 
-    private String getThreadTitleFromElement(Element hotThreadElement) {
-        return hotThreadElement.selectFirst("p.title a.title").text();
+    private Element getTitleAndLinkElement(Element threadElement) {
+        return threadElement.selectFirst("p.title a.title");
     }
 
-    private int getNumberOfUpvotesFromThread(Element threadElement) {
+    private int getNumberOfUpvotesFromElement(Element threadElement) {
         String upvotes = threadElement.children().select("div[class=score unvoted]").get(0).attr("title");
         if (upvotes == null || upvotes.isEmpty()) {
             return 0;
@@ -55,18 +52,18 @@ public class ScrapingService {
         return Integer.parseInt(upvotes);
     }
 
-    private String getPermalinkFromElement(Element hotThreadElement) {
-        return redditEndpoint + hotThreadElement.attr("data-permalink");
+    private String getPermalinkFromElement(Element threadElement) {
+        return redditEndpoint + threadElement.attr("data-permalink");
     }
 
-    private String getThreadLinkFromElement(Element titleAndLink) {
-        return formatThreadLink(titleAndLink.attr("href"));
+    private String getThreadLinkFromElement(Element threadElement) {
+        return formatThreadLink(getTitleAndLinkElement(threadElement).attr("href"));
     }
 
     private List<Element> getHotThreadElements(List<Element> threadElements) {
         List<Element> hotThreadElements = new ArrayList<>();
         for (Element threadElement : threadElements) {
-            int upvotes = getNumberOfUpvotesFromThread(threadElement);
+            int upvotes = getNumberOfUpvotesFromElement(threadElement);
             if (upvotes > 5000) {
                 hotThreadElements.add(threadElement);
             } else {
@@ -79,17 +76,6 @@ public class ScrapingService {
     private List<Element> getThreadElements(String subreddit) throws IOException {
         Document document = Jsoup.connect(redditEndpoint + "/r/" + subreddit + "/top/?sort=top&t=day&limit=100").get();
         return document.getElementById("siteTable").children().select("div[class*=thing]");
-    }
-
-    private void printThreadInformation(Element threadDiv, int upvotes) {
-        Element titleAndLink = threadDiv.selectFirst("p.title a.title");
-        System.out.println(threadDiv.attr("data-subreddit-prefixed")
-                + ": "
-                + titleAndLink.text()
-                + " - "
-                + upvotes + " upvotes");
-        System.out.println("Comentários: " + redditEndpoint + threadDiv.attr("data-permalink"));
-        System.out.println("Link: " + getThreadLinkFromElement(titleAndLink));
     }
 
     private String formatThreadLink(String link) {
