@@ -36,5 +36,5 @@ Exemplo: ```https://rddt-scraper-api.herokuapp.com/threads/hot?subreddits=wtf;mu
 **Pré-requisitos:**
 - Java 8
 
-Executar o comando ```./mvnw spring-boot:run -Dspring.active.profiles=dev``` na raiz do projeto.  
+Executar o comando ```./mvnw spring-boot:run -D spring.profiles.active=dev``` na raiz do projeto.  
 O serviço irá rodar em ```localhost:8080```
