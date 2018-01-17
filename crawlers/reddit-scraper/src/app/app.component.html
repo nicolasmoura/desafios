@@ -1,0 +1,46 @@
+<div class="ui-g primeng-font">
+    <div class="ui-g-4 ui-md-4 ui-sm-12">
+        <h1><i class="fa fa-reddit-alien"></i> reddit-scraper</h1>
+        <p>Segundo desafio da IDwall :)</p>
+    </div>
+</div>
+<div class="ui-g primeng-font">
+    <div class="ui-g-4 ui-md-4 ui-sm-12">
+        <p-panel>
+            <p>Digite uma lista de subreddits separados por ponto e vírgula:</p>
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon" style="width: 8%"><i class="fa fa-reddit"></i></span>
+                <input type="text" class="full-width subreddit-input" pInputText placeholder="ex.: askreddit;cats;music" [(ngModel)]="subreddits">
+            </div>
+            <div>
+                <button pButton type="button" class="send-button full-width" (click)="getHotThreads()"
+                        [icon]="sendButtonIconConfig" iconPos="right" label="Me dê as threads bombando!"></button>
+            </div>
+        </p-panel>
+    </div>
+    <div class="ui-g-8 ui-md-8 ui-sm-12" *ngIf="threads.length == 0 && alreadyExecuted && !isExecuting">
+        <h3 align="center">Nenhum desses subreddits tem threads bombando :(</h3>
+    </div>
+    <div class="ui-g-8 ui-md-8 ui-sm-12" *ngIf="threads.length > 0">
+        <p-dataList [value]="threads" [paginator]="true" [rows]="4">
+            <ng-template let-thread pTemplate="thread">
+                <div class="ui-g ui-fluid border" style="font-size: 14px">
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-g">
+                            <div class="ui-g-2 ui-sm-12">
+                                <a target="_blank" [href]="'https://reddit.com/r/' + thread.subreddit">r/{{thread.subreddit}}</a>
+                            </div>
+                            <div class="ui-g-9 ui-sm-12">
+                                <a target="_blank" [href]="thread.link">{{thread.title}}</a>
+                            </div>
+                            <div class="ui-g-2 ui-sm-6"><span class="bold">{{thread.upvotes}}</span> upvotes</div>
+                            <div class="ui-g-4 ui-sm-6">
+                                <a target="_blank" [href]="thread.permalink">Comentários</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataList>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+.custom-textarea {
+  width: 100%;
+  height: 400px;
+  resize: none;
+  font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.formatar-button {
+  height: 50px;
+}
+
+.primeng-font {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Segoe UI Symbol";
+}
+
+.custom-spinner {
+  margin-bottom: 50px;
+}
+
