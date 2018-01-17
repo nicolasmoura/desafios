@@ -1,7 +1,7 @@
 # Entrega dos desafios :)
 
 ## [stringbreaker-api](stringbreaker-api)
-API RESTful criada usando Spring Boot - 
+API RESTful criada usando Spring Boot
 
 ## [stringbreaker](stringbreaker)
 SPA criada em Angular que consome a *stringbreaker-api*
