@@ -1,3 +1,14 @@
+# Entrega dos desafios :)
+
+## [stringbreaker-api](/stringbreaker-api)
+API RESTful criada usando Spring Boot - 
+
+## [stringbreaker](/stringbreaker)
+SPA criada em Angular que consome a *stringbreaker-api*
+
+Disponível em: https://stringbreaker.herokuapp.com/
+
+---
 # Desafio 1: Strings
 
 Após ler o coding style do kernel Linux, você descobre a mágica que é 
