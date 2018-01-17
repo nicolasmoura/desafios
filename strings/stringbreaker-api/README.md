@@ -26,7 +26,7 @@ Só utilizar os métodos abaixo usando o endpoint: https://stringbreaker-api.her
     ```json
     {
       "message": "string",
-      "text: "string"
+      "text": "string"
     }
     ```
     
