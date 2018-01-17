@@ -1,3 +1,16 @@
+# Entrega dos desafios :)
+
+## [reddit-scraper-api](reddit-scraper-api)
+Web scraper acessível via API RESTful, criado usando Spring Boot e Jsoup
+
+## [reddit-scraper](reddit-scraper)
+SPA criada em Angular que consome a *reddit-scraper-api*  
+Disponível em: https://rddt-scraper.herokuapp.com/
+
+## [hot-threads-bot](hot-threads-bot) - @HotThreadsBot
+Bot do Telegram feito em Node que consome a *reddit-scraper-api*
+
+---
 # Desafio 2: Crawlers
 
 Parte do trabalho na IDwall inclui desenvolver *crawlers/scrapers* para coletar dados de websites.
