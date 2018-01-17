@@ -11,5 +11,6 @@ Pré-requisitos:
 
 Executar os comandos:  
 ```npm i``` (apenas da primeira vez)  
-```ng build```  
+```ng build -prod```  
 ```npm start```  
+A aplicação estará disponível em ```localhost:8080```
