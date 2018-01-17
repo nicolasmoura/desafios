@@ -1,9 +1,9 @@
 # Entrega dos desafios :)
 
-## [stringbreaker-api](desafios/strings/stringbreaker-api)
+## [stringbreaker-api](stringbreaker-api)
 API RESTful criada usando Spring Boot - 
 
-## [stringbreaker](desafios/strings/stringbreaker)
+## [stringbreaker](stringbreaker)
 SPA criada em Angular que consome a *stringbreaker-api*
 
 Disponível em: https://stringbreaker.herokuapp.com/
